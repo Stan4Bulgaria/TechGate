@@ -1,6 +1,3 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using TechGate.Data;
 using TechGate.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
