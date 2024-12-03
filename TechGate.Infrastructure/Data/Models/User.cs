@@ -10,13 +10,12 @@ namespace TechGate.Infrastructure.Data.Models
 
 
         [Required]
-        [MaxLength(DataConstants.User.ProfilePictureMaxLength, ErrorMessage = "Profile picture URL cannot exceed 255 characters.")]
-        [Url(ErrorMessage = "Please provide a valid URL for the profile picture.")]
+        [MaxLength(DataConstants.User.ProfilePictureMaxLength)]
         public string ProfilePictureUrl { get; set; } = string.Empty;
 
 
         [Required]
-        [MaxLength(DataConstants.User.AddressMaxLength, ErrorMessage = "Address cannot exceed 50 characters.")]
+        [MaxLength(DataConstants.User.AddressMaxLength)]
         public string Address { get; set; } = string.Empty;
 
         [Required]
@@ -30,6 +29,8 @@ namespace TechGate.Infrastructure.Data.Models
         public ICollection<Review> Reviews { get; set; } = new List<Review>();
 
         public ICollection<Order> Orders { get; set; } = new List<Order>();
+
+        public ICollection<Payment> Payments { get; set; } = new List<Payment>();
 
 
 

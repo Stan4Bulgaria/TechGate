@@ -15,7 +15,7 @@ namespace TechGate.Infrastructure.Data.Models
         public Product? Product { get; set; }
    
 
-        public int UserId { get; set; }
+        public string UserId { get; set; } = string.Empty;
         [ForeignKey(nameof(UserId))]
         public User? User { get; set; }
 

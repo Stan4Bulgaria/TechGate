@@ -26,10 +26,14 @@ namespace TechGate.Infrastructure.Data.Models
         [StringLength(DataConstants.Product.ImageUrlMaxLength)]  
         public string ImageUrl { get; set; } = string.Empty;
 
-        public int CategortId { get; set; }
-        [ForeignKey(nameof(CategortId))]
+        public int CategoryId { get; set; }
+        [ForeignKey(nameof(CategoryId))]
         public Category? Category { get; set; }
 
         public int AmounInStock { get; set; }
+
+        public ICollection<OrderItem> OrderItems { get; set;} = new List<OrderItem>();
+
+        public ICollection<Review> Reviews { get; set; } = new List<Review>();
     }
 }

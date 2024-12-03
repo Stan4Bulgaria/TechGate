@@ -72,7 +72,8 @@ namespace TechGate.Infrastructure.Data
             Processed = 1,
             Shipped = 2,
             Delivered = 3,
-            Canceled = 4
+            Canceled = 4,
+            Completed = 5,
         }
         public enum PaymentStatus
         {
@@ -83,10 +84,10 @@ namespace TechGate.Infrastructure.Data
         }
         public enum PaymentMethod
         {
-            CreditCard = 1,
-            PayPal = 2,
-            BankTransfer = 3,
-            CashOnDelivery = 4
+            CreditCard = 0,
+            PayPal = 1,
+            BankTransfer = 2,
+            CashOnDelivery = 3
         }
     }
 }
