@@ -10,4 +10,13 @@
     <ProjectReference Include="..\TechGate.Infrastructure\TechGate.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Category\" />
+    <Folder Include="Models\User\" />
+    <Folder Include="Models\Review\" />
+    <Folder Include="Models\OrderItem\" />
+    <Folder Include="Models\Payment\" />
+    <Folder Include="Models\Order\" />
+  </ItemGroup>
+
 </Project>

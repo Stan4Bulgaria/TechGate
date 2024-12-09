@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using TechGate.Core.Inferfaces;
+using TechGate.Core.Services;
 using TechGate.Data;
 
 namespace TechGate.Extensions
@@ -8,7 +10,7 @@ namespace TechGate.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-
+            services.AddScoped<IProductServices, ProductServices>();
             return services;
         }
 
@@ -38,5 +40,6 @@ namespace TechGate.Extensions
 
             return services;
         }
+       
     }
 }
