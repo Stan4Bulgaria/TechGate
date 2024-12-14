@@ -11,6 +11,7 @@ namespace TechGate.Extensions
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<IProductServices, ProductServices>();
+            services.AddScoped<ICategoryServices, CategoryServices>();
             return services;
         }
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using TechGate.Infrastructure.Data.Models;
 using TechGate.Infrastructure.Data;
 
-namespace TechGate.Core.Models.Product
+namespace TechGate.Core.Models
 {
     public class ProductCardViewModel
     {

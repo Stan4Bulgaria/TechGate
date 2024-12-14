@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -8,15 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TechGate.Infrastructure\TechGate.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\Category\" />
-    <Folder Include="Models\User\" />
-    <Folder Include="Models\Review\" />
-    <Folder Include="Models\OrderItem\" />
-    <Folder Include="Models\Payment\" />
-    <Folder Include="Models\Order\" />
   </ItemGroup>
 
 </Project>

@@ -20,13 +20,14 @@ namespace TechGate.Infrastructure.Data
             public const int DescriptionMaxLength = 500;
             public const int DescriptionMinLength = 10; 
 
-            public const string PriceMaxValue= "3000.00";
-            public const string PriceMinValue = "0.00";
+            public const double PriceMaxValue = 9999.99;
+            public const double PriceMinValue = 0.01;
 
             public const int ImageUrlMaxLength = 255;  
             public const int ImageUrlMinLength = 7;
 
-            public const int InStocMaxAmount = 100;
+            public const int InStocMaxAmount = 1000;
+            public const int InStockMinAmount = 0;
 
 
         }

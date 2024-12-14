@@ -1,4 +1,4 @@
-﻿using TechGate.Core.Models.Product;
+﻿using TechGate.Core.Models;
 using TechGate.Infrastructure.Data.Models;
 
 namespace TechGate.Core.Inferfaces
@@ -7,8 +7,8 @@ namespace TechGate.Core.Inferfaces
     {
         Task<IEnumerable<ProductCardViewModel>> GetAllProductsAsync();
         Task<Product> GetProductByIdAsync(int productId);
-        Task AddProductAsync(Product product);
-        Task UpdateProductAsync(Product product);
+        Task AddProductAsync(AddProductFormViewModel product);
+        Task UpdateProductAsync(AddProductFormViewModel product, int id);
         Task DeleteProductAsync(int productId);
     }
 }
