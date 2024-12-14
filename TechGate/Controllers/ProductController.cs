@@ -62,13 +62,19 @@ namespace TechGate.Controllers
 
         }
         [HttpPost]
-       public async Task<IActionResult> Edit(AddProductFormViewModel model, int id)
+        public async Task<IActionResult> Edit(AddProductFormViewModel model, int id)
         {
             await _productServices.UpdateProductAsync(model, id);
 
             return RedirectToAction("All", "Product");
 
 
+        }
+        [HttpGet]
+        public  async Task<IActionResult> Delete(int id)
+        {
+            await _productServices.DeleteProductAsync(id);
+            return RedirectToAction("All", "Product");
         }
     }
 }

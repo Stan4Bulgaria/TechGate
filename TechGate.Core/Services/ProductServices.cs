@@ -60,16 +60,18 @@ namespace TechGate.Core.Services
 
             await _context.SaveChangesAsync();
         }
-        public Task DeleteProductAsync(int productId)
+        public async Task DeleteProductAsync(int productId)
         {
-            throw new NotImplementedException();
+            var product = await GetProductByIdAsync(productId);
+            _context.Products.Remove(product);
+            _context.SaveChangesAsync();
         }
 
 
 
         public async Task UpdateProductAsync(AddProductFormViewModel model, int id)
         {
-            var product =  await GetProductByIdAsync(id);
+            var product = await GetProductByIdAsync(id);
 
 
             product.Name = model.Name;
@@ -81,8 +83,6 @@ namespace TechGate.Core.Services
 
             await _context.SaveChangesAsync();
         }
-
-
 
     }
 }
