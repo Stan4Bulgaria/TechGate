@@ -10,5 +10,6 @@ namespace TechGate.Core.Inferfaces
         Task AddProductAsync(AddProductFormViewModel product);
         Task UpdateProductAsync(AddProductFormViewModel product, int id);
         Task DeleteProductAsync(int productId);
+        Task<List<ProductCardViewModel>> GetFilteredProductsAsync(decimal? maxPrice, int? categoryId);
     }
 }

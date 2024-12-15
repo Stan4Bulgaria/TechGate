@@ -1,0 +1,33 @@
+﻿@using TechGate.Core.Models
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model ProductDetailsViewModel;
+<div class="container-lg">
+
+    <div class="d-flex align-items-center">
+
+        <figure class="figure me-3">
+            <img src="@Model.ImageUrl"
+                 class="figure-img img-fluid rounded"
+                 alt="Product Image"
+                 style="width: 400px; height: 400px; object-fit: cover;">
+        </figure>
+
+        <div>
+            <h4>POP MOUSE</h4>
+            <p><strong>Price:</strong> $@Model.Price
+            <p><strong>Category:</strong>@Model.Category</p>
+            <p>
+                <strong>Description: </strong>
+                @Model.Description
+            </p>
+        </div>
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+        <button class="btn btn-danger" type="button">Delete</button>
+        <button class="btn btn-warning" type="button">Edit</button>
+        <button class="btn btn-success" type="button">Order</button>
+    </div>
+</div>

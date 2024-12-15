@@ -76,5 +76,30 @@ namespace TechGate.Controllers
             await _productServices.DeleteProductAsync(id);
             return RedirectToAction("All", "Product");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var product = await _productServices.GetProductByIdAsync(id);
+
+            var model = new ProductDetailsViewModel()
+            {
+                Id= product.Id,
+                Name= product.Name,
+                Description= product.Description,
+                Price = product.Price,
+                ImageUrl = product.ImageUrl,
+                Category = product.Category.Name
+
+            };
+            return View(model);
+        }
+        [HttpGet]
+        public async Task<IActionResult> FilteredProducts(decimal? maxPrice, int? categoryId)
+        {
+            var products = await _productServices.GetFilteredProductsAsync(maxPrice, categoryId);
+
+            return View("All", products);
+        }
     }
 }

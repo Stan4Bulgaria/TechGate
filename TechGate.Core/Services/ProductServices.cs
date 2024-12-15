@@ -6,6 +6,7 @@ using TechGate.Core.Models;
 using TechGate.Data;
 using TechGate.Infrastructure.Data;
 using TechGate.Infrastructure.Data.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace TechGate.Core.Services
 {
@@ -39,7 +40,9 @@ namespace TechGate.Core.Services
         }
         public async Task<Product> GetProductByIdAsync(int productId)
         {
-            var product = await _context.Products.FindAsync(productId);
+            var product = await _context.Products
+                .Include(c => c.Category)
+                .FirstOrDefaultAsync(p => p.Id == productId);
 
             return product;
         }
@@ -67,7 +70,10 @@ namespace TechGate.Core.Services
             _context.SaveChangesAsync();
         }
 
-
+        public async Task Details(int id)
+        {
+            var product = await GetProductByIdAsync(id);
+        }
 
         public async Task UpdateProductAsync(AddProductFormViewModel model, int id)
         {
@@ -84,5 +90,25 @@ namespace TechGate.Core.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task<List<ProductCardViewModel>> GetFilteredProductsAsync(decimal? maxPrice, int? categoryId)
+        {
+            var products =  _context.Products.AsQueryable();
+
+            if (maxPrice.HasValue)
+            {
+                products = products.Where(p => p.Price <= maxPrice);
+            }
+            if (categoryId.HasValue)
+            {
+                products =  products.Where(p => p.CategoryId == categoryId);
+            }
+            return await products.Select(p => new ProductCardViewModel
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Price = p.Price,
+                ImageUrl = p.ImageUrl
+            }).ToListAsync();
+        }
     }
 }
