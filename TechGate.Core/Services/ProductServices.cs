@@ -90,25 +90,45 @@ namespace TechGate.Core.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<ProductCardViewModel>> GetFilteredProductsAsync(decimal? maxPrice, int? categoryId)
+        public async Task<ProductPageViewModel> GetFilteredProductsAsync(decimal? maxPrice, decimal? minPrice, int? categoryId)
         {
-            var products =  _context.Products.AsQueryable();
+            var products = _context.Products.Include(c => c.Category).AsQueryable();
 
             if (maxPrice.HasValue)
             {
                 products = products.Where(p => p.Price <= maxPrice);
             }
+            if (minPrice.HasValue)
+            {
+                products = products.Where(p => p.Price >= minPrice);
+            }
             if (categoryId.HasValue)
             {
-                products =  products.Where(p => p.CategoryId == categoryId);
+                products = products.Where(p => p.CategoryId == categoryId);
             }
-            return await products.Select(p => new ProductCardViewModel
+            var filteredProducts = await products.Select(p => new ProductCardViewModel
             {
                 Id = p.Id,
                 Name = p.Name,
                 Price = p.Price,
-                ImageUrl = p.ImageUrl
+                ImageUrl = p.ImageUrl,
+                CategoryId = p.Category.Id,
+
             }).ToListAsync();
+
+            var viewModel = new ProductPageViewModel()
+            {
+                Products = filteredProducts,
+                Categories = await _context.Categories
+                  .Select(c => new CategoryViewModel()
+                  {
+                      Id = c.Id,
+                      Name = c.Name
+                  })
+                  .ToListAsync()
+
+            };
+            return viewModel;
         }
     }
 }

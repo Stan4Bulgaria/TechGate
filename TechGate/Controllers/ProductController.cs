@@ -18,9 +18,17 @@ namespace TechGate.Controllers
         [HttpGet]
         public async Task<IActionResult> All()
         {
-            var products = await _productServices.GetAllProductsAsync();
 
-            return View(products);
+            var products = await _productServices.GetAllProductsAsync();
+            var categories = await _categoryServices.GetAllCategoriesAsync();
+
+            var viewModel = new ProductPageViewModel
+            {
+                Products = products.ToList(),
+                Categories = categories.ToList(),
+            };
+
+            return View(viewModel);
         }
         [HttpGet]
         public async Task<IActionResult> Add()
@@ -95,9 +103,9 @@ namespace TechGate.Controllers
             return View(model);
         }
         [HttpGet]
-        public async Task<IActionResult> FilteredProducts(decimal? maxPrice, int? categoryId)
+        public async Task<IActionResult> FilteredProducts(decimal? maxPrice, decimal? minPrice ,int? categoryId)
         {
-            var products = await _productServices.GetFilteredProductsAsync(maxPrice, categoryId);
+            var products = await _productServices.GetFilteredProductsAsync(maxPrice, minPrice,categoryId);
 
             return View("All", products);
         }

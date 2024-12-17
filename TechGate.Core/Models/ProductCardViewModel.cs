@@ -22,10 +22,7 @@ namespace TechGate.Core.Models
 
         public string ImageUrl { get; set; } = string.Empty;
 
-        //public int CategoryId { get; set; }
-        //public ICollection<CategoryViewModel> Categories { get; set; }
-
-
+        public int CategoryId { get; set; }
 
 
     }
