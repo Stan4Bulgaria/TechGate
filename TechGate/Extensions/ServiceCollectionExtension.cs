@@ -29,15 +29,16 @@ namespace TechGate.Extensions
         public static IServiceCollection AddApplicationIdentity(this IServiceCollection services, IConfiguration config)
         {
             services
-                    .AddDefaultIdentity<IdentityUser>(options =>
-                    {
-                        options.SignIn.RequireConfirmedAccount = false;
-                        options.Password.RequireDigit = false;
-                        options.Password.RequireLowercase = false;
-                        options.Password.RequireUppercase = false;
-                        options.Password.RequireNonAlphanumeric = false;
-                    })
-                    .AddEntityFrameworkStores<TechGateDbContext>();
+            .AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+            })
+            .AddEntityFrameworkStores<TechGateDbContext>()
+            .AddDefaultTokenProviders();
 
             return services;
         }

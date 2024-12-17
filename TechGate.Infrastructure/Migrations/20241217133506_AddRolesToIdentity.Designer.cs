@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TechGate.Data;
 
@@ -11,9 +12,10 @@ using TechGate.Data;
 namespace TechGate.Infrastructure.Migrations
 {
     [DbContext(typeof(TechGateDbContext))]
-    partial class TechGateDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241217133506_AddRolesToIdentity")]
+    partial class AddRolesToIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
