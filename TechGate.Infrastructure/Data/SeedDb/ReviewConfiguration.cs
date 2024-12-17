@@ -16,7 +16,7 @@ namespace TechGate.Infrastructure.Data.SeedDb
             builder
                 .HasOne(p => p.Product)
                 .WithMany(r => r.Reviews)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
                 
            builder
                 .HasOne(u => u.User)

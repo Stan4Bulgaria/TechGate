@@ -78,12 +78,6 @@ namespace TechGate.Controllers
 
 
         }
-        [HttpGet]
-        public  async Task<IActionResult> Delete(int id)
-        {
-            await _productServices.DeleteProductAsync(id);
-            return RedirectToAction("All", "Product");
-        }
 
         [HttpGet]
         public async Task<IActionResult> Details(int id)
@@ -108,6 +102,32 @@ namespace TechGate.Controllers
             var products = await _productServices.GetFilteredProductsAsync(maxPrice, minPrice,categoryId);
 
             return View("All", products);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var product = await _productServices.GetProductByIdAsync(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = new ProductDeleteViewModel
+            {
+                Id = product.Id,
+                Name = product.Name,
+                ImageUrl = product.ImageUrl
+            };
+
+            return View(viewModel);
+        }
+        [HttpPost]
+        [ActionName("Delete")]
+        public  async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            await _productServices.DeleteProductAsync(id);
+            return RedirectToAction("All", "Product");
         }
     }
 }

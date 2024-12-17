@@ -67,7 +67,7 @@ namespace TechGate.Core.Services
         {
             var product = await GetProductByIdAsync(productId);
             _context.Products.Remove(product);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public async Task Details(int id)

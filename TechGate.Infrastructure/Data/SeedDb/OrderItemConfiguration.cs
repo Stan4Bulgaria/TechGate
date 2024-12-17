@@ -23,7 +23,7 @@ namespace TechGate.Infrastructure.Data.SeedDb
                 .HasOne(p => p.Product)
                 .WithMany(oi => oi.OrderItems)
                 .HasForeignKey(o => o.ProductId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             var data = new SeedData();
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TechGate.Data;
 
@@ -11,9 +12,10 @@ using TechGate.Data;
 namespace TechGate.Infrastructure.Migrations
 {
     [DbContext(typeof(TechGateDbContext))]
-    partial class TechGateDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241217115458_reconfiguringOrderItem")]
+    partial class reconfiguringOrderItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -326,7 +328,7 @@ namespace TechGate.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            OrderDate = new DateTime(2024, 12, 17, 13, 59, 7, 363, DateTimeKind.Local).AddTicks(6011),
+                            OrderDate = new DateTime(2024, 12, 17, 13, 54, 58, 410, DateTimeKind.Local).AddTicks(5981),
                             OrderStatus = 0,
                             ShippingAddress = "5 Vitosha Boulevard, Sofia",
                             TotalAmount = 69.99m,
@@ -335,7 +337,7 @@ namespace TechGate.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            OrderDate = new DateTime(2024, 12, 17, 13, 29, 7, 363, DateTimeKind.Local).AddTicks(6012),
+                            OrderDate = new DateTime(2024, 12, 17, 13, 24, 58, 410, DateTimeKind.Local).AddTicks(5983),
                             OrderStatus = 5,
                             ShippingAddress = "8 Alexander Nevsky Square, Sofia",
                             TotalAmount = 329.97m,
@@ -439,7 +441,7 @@ namespace TechGate.Infrastructure.Migrations
                             Id = 1,
                             AmountPaid = 329.97m,
                             OrderId = 2,
-                            PaymentDate = new DateTime(2024, 12, 17, 13, 59, 7, 367, DateTimeKind.Local).AddTicks(4402),
+                            PaymentDate = new DateTime(2024, 12, 17, 13, 54, 58, 414, DateTimeKind.Local).AddTicks(4691),
                             PaymentMethod = 0,
                             PaymentStatus = 1,
                             UserId = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e"
@@ -449,7 +451,7 @@ namespace TechGate.Infrastructure.Migrations
                             Id = 2,
                             AmountPaid = 69.99m,
                             OrderId = 1,
-                            PaymentDate = new DateTime(2024, 12, 17, 13, 59, 7, 367, DateTimeKind.Local).AddTicks(4404),
+                            PaymentDate = new DateTime(2024, 12, 17, 13, 54, 58, 414, DateTimeKind.Local).AddTicks(4693),
                             PaymentMethod = 0,
                             PaymentStatus = 1,
                             UserId = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e"
@@ -566,7 +568,7 @@ namespace TechGate.Infrastructure.Migrations
                         {
                             Id = 1,
                             Comment = "The mouse is great but razer loves installing malware",
-                            CreatedAt = new DateTime(2024, 12, 17, 13, 59, 7, 369, DateTimeKind.Local).AddTicks(3449),
+                            CreatedAt = new DateTime(2024, 12, 17, 13, 54, 58, 416, DateTimeKind.Local).AddTicks(3577),
                             ProductId = 1,
                             Rating = 4,
                             UserId = "dea12856-c198-4129-b3f3-b893d8395082"
@@ -600,19 +602,19 @@ namespace TechGate.Infrastructure.Migrations
                         {
                             Id = "dea12856-c198-4129-b3f3-b893d8395082",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b7043e47-f067-4cb8-b4eb-34dda5dafcae",
+                            ConcurrencyStamp = "c62f198e-b072-4b3d-b1bf-8fdf8ef0daac",
                             Email = "peter@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "PETER@GMAIL.COM",
                             NormalizedUserName = "PETER@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEENY61CpytVn1MWN8aumFHYjagmrYakj6K/v23e0uvvGC74Pp9PorcuziE2XyuVAJQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMEI91sE5luVhgKcvQPAdPYC/ijQskGpBlu+D4otmLxI7pRzkJZWkQmLTa/m8c+e3Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "22985c66-02c3-4ad7-8f30-6297585901e0",
+                            SecurityStamp = "8ed3e05b-ac80-4152-adaf-51cdf1aadd60",
                             TwoFactorEnabled = false,
                             UserName = "peter@gmail.com",
                             Address = "5 Vitosha Boulevard, Sofia",
-                            CreatedAt = new DateTime(2024, 12, 17, 13, 59, 7, 355, DateTimeKind.Local).AddTicks(3509),
+                            CreatedAt = new DateTime(2024, 12, 17, 13, 54, 58, 402, DateTimeKind.Local).AddTicks(3304),
                             DateOfBirth = new DateTime(2001, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProfilePictureUrl = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
                         },
@@ -620,19 +622,19 @@ namespace TechGate.Infrastructure.Migrations
                         {
                             Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "62e9e69f-b639-464d-b8fb-294a2160f977",
+                            ConcurrencyStamp = "bdef15db-d736-4aee-88c8-3ce2bbc75430",
                             Email = "stoqn@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "STOQN@GMAIL.COM",
                             NormalizedUserName = "STOQN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOL3vElppr+BE4GDA752TMF+3jNr/Xq9ZcAKJIKbsQxpSGmtBtym3OX8Xlec6rsUiQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAaEWq855mSTjoi53qu6vzH6Kooh2Lvrupr2fXY5hpw03YF+X8P48qNeuhBQUtl8XA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3bcaa8b6-14da-4f1b-a1e2-a64bd8d070a3",
+                            SecurityStamp = "4d60fe49-cccf-4543-bfa7-027155185c67",
                             TwoFactorEnabled = false,
                             UserName = "stoqn@gmail.com",
                             Address = "100 Tsarigradsko Shose Blvd, Sofia",
-                            CreatedAt = new DateTime(2024, 12, 17, 13, 59, 7, 356, DateTimeKind.Local).AddTicks(5888),
+                            CreatedAt = new DateTime(2024, 12, 17, 13, 54, 58, 403, DateTimeKind.Local).AddTicks(4229),
                             DateOfBirth = new DateTime(1999, 11, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProfilePictureUrl = "https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg"
                         });
@@ -754,7 +756,7 @@ namespace TechGate.Infrastructure.Migrations
                     b.HasOne("TechGate.Infrastructure.Data.Models.Product", "Product")
                         .WithMany("Reviews")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("TechGate.Infrastructure.Data.Models.User", "User")
