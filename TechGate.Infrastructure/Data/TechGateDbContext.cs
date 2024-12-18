@@ -5,7 +5,7 @@ using TechGate.Infrastructure.Data.SeedDb;
 
 namespace TechGate.Data
 {
-    public class TechGateDbContext : IdentityDbContext
+    public class TechGateDbContext : IdentityDbContext<User>
     {
         public DbSet<Category>? Categories { get; set; }
 
@@ -19,7 +19,7 @@ namespace TechGate.Data
 
         public DbSet<Review>? Reviews { get; set; }
 
-        public DbSet<User>? ApplicationUser {  get; set; }
+        public DbSet<User>? ApplicationUser { get; set; }
 
         public TechGateDbContext(DbContextOptions<TechGateDbContext> options)
             : base(options)

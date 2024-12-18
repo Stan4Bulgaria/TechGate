@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TechGate.Data;
 
@@ -11,12 +12,14 @@ using TechGate.Data;
 namespace TechGate.Infrastructure.Migrations
 {
     [DbContext(typeof(TechGateDbContext))]
-    partial class TechGateDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241218123814_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("identity")
                 .HasAnnotation("ProductVersion", "6.0.35")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
@@ -46,7 +49,7 @@ namespace TechGate.Infrastructure.Migrations
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("AspNetRoles", (string)null);
+                    b.ToTable("AspNetRoles", "identity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -71,7 +74,7 @@ namespace TechGate.Infrastructure.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims", (string)null);
+                    b.ToTable("AspNetRoleClaims", "identity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -96,18 +99,16 @@ namespace TechGate.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims", (string)null);
+                    b.ToTable("AspNetUserClaims", "identity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -120,7 +121,7 @@ namespace TechGate.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins", (string)null);
+                    b.ToTable("AspNetUserLogins", "identity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -135,7 +136,7 @@ namespace TechGate.Infrastructure.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles", (string)null);
+                    b.ToTable("AspNetUserRoles", "identity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -144,19 +145,17 @@ namespace TechGate.Infrastructure.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens", (string)null);
+                    b.ToTable("AspNetUserTokens", "identity");
                 });
 
             modelBuilder.Entity("TechGate.Infrastructure.Data.Models.Category", b =>
@@ -174,7 +173,7 @@ namespace TechGate.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", "identity");
 
                     b.HasData(
                         new
@@ -249,13 +248,13 @@ namespace TechGate.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", "identity");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            OrderDate = new DateTime(2024, 12, 18, 16, 20, 48, 45, DateTimeKind.Local).AddTicks(4483),
+                            OrderDate = new DateTime(2024, 12, 18, 14, 38, 13, 955, DateTimeKind.Local).AddTicks(1900),
                             OrderStatus = 0,
                             ShippingAddress = "5 Vitosha Boulevard, Sofia",
                             TotalAmount = 69.99m,
@@ -264,7 +263,7 @@ namespace TechGate.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            OrderDate = new DateTime(2024, 12, 18, 15, 50, 48, 45, DateTimeKind.Local).AddTicks(4485),
+                            OrderDate = new DateTime(2024, 12, 18, 14, 8, 13, 955, DateTimeKind.Local).AddTicks(1915),
                             OrderStatus = 5,
                             ShippingAddress = "8 Alexander Nevsky Square, Sofia",
                             TotalAmount = 329.97m,
@@ -298,7 +297,7 @@ namespace TechGate.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderItems");
+                    b.ToTable("OrderItems", "identity");
 
                     b.HasData(
                         new
@@ -360,7 +359,7 @@ namespace TechGate.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Payments");
+                    b.ToTable("Payments", "identity");
 
                     b.HasData(
                         new
@@ -368,7 +367,7 @@ namespace TechGate.Infrastructure.Migrations
                             Id = 1,
                             AmountPaid = 329.97m,
                             OrderId = 2,
-                            PaymentDate = new DateTime(2024, 12, 18, 16, 20, 48, 49, DateTimeKind.Local).AddTicks(2931),
+                            PaymentDate = new DateTime(2024, 12, 18, 14, 38, 13, 959, DateTimeKind.Local).AddTicks(3665),
                             PaymentMethod = 0,
                             PaymentStatus = 1,
                             UserId = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e"
@@ -378,7 +377,7 @@ namespace TechGate.Infrastructure.Migrations
                             Id = 2,
                             AmountPaid = 69.99m,
                             OrderId = 1,
-                            PaymentDate = new DateTime(2024, 12, 18, 16, 20, 48, 49, DateTimeKind.Local).AddTicks(2933),
+                            PaymentDate = new DateTime(2024, 12, 18, 14, 38, 13, 959, DateTimeKind.Local).AddTicks(3667),
                             PaymentMethod = 0,
                             PaymentStatus = 1,
                             UserId = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e"
@@ -421,7 +420,7 @@ namespace TechGate.Infrastructure.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", "identity");
 
                     b.HasData(
                         new
@@ -488,14 +487,14 @@ namespace TechGate.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Reviews");
+                    b.ToTable("Reviews", "identity");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             Comment = "The mouse is great but razer loves installing malware",
-                            CreatedAt = new DateTime(2024, 12, 18, 16, 20, 48, 51, DateTimeKind.Local).AddTicks(2177),
+                            CreatedAt = new DateTime(2024, 12, 18, 14, 38, 13, 961, DateTimeKind.Local).AddTicks(2684),
                             ProductId = 1,
                             Rating = 4,
                             UserId = "dea12856-c198-4129-b3f3-b893d8395082"
@@ -580,7 +579,7 @@ namespace TechGate.Infrastructure.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers", (string)null);
+                    b.ToTable("AspNetUsers", "identity");
 
                     b.HasData(
                         new
@@ -588,18 +587,18 @@ namespace TechGate.Infrastructure.Migrations
                             Id = "dea12856-c198-4129-b3f3-b893d8395082",
                             AccessFailedCount = 0,
                             Address = "5 Vitosha Boulevard, Sofia",
-                            ConcurrencyStamp = "5151006f-6b23-433e-97a7-a93793061fb3",
-                            CreatedAt = new DateTime(2024, 12, 18, 16, 20, 48, 37, DateTimeKind.Local).AddTicks(8543),
+                            ConcurrencyStamp = "ff51ffe0-0b7b-4ebe-8d2b-bbdbdad4b616",
+                            CreatedAt = new DateTime(2024, 12, 18, 14, 38, 13, 947, DateTimeKind.Local).AddTicks(279),
                             DateOfBirth = new DateTime(2001, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "peter@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "PETER@GMAIL.COM",
                             NormalizedUserName = "PETER@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDRfobC3XDJOu/HFdGbcuPEewJXFvse+/XBXrBAOVfEaVUVt04Rs1nCGdqo8QQRD4A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKeQa9F1+EDHM/CCx2jRSyLDDFlBbcAHIKxM+NAix6OSzg2C9uyou2jP3/GzvTCrfg==",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-                            SecurityStamp = "b31c8970-55ae-434a-a5be-47a3f1fa2246",
+                            SecurityStamp = "2e371878-4dce-41ed-a152-9c73ec6d9c13",
                             TwoFactorEnabled = false,
                             UserName = "peter@gmail.com"
                         },
@@ -608,18 +607,18 @@ namespace TechGate.Infrastructure.Migrations
                             Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                             AccessFailedCount = 0,
                             Address = "100 Tsarigradsko Shose Blvd, Sofia",
-                            ConcurrencyStamp = "3535fb1b-ad58-4d73-876d-dfd834277a27",
-                            CreatedAt = new DateTime(2024, 12, 18, 16, 20, 48, 38, DateTimeKind.Local).AddTicks(8319),
+                            ConcurrencyStamp = "ce17e579-92ee-4629-bc11-2a6879fa4190",
+                            CreatedAt = new DateTime(2024, 12, 18, 14, 38, 13, 947, DateTimeKind.Local).AddTicks(9771),
                             DateOfBirth = new DateTime(1999, 11, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "stoqn@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "STOQN@GMAIL.COM",
                             NormalizedUserName = "STOQN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJJfTAwA7ugqojvYgwc/zTFOtTyKdXq/C6xDEw0/IaJ26oucQQ3O6kTc/zV6Oq/ELw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPYov603lffQ2VwabI1JGOwPC44VIS3POsioWTE5AsrUAiSb1F2LsMc3vhaj110SZA==",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg",
-                            SecurityStamp = "0cb5c0ea-923d-471a-8698-e611ece92ac8",
+                            SecurityStamp = "219088dc-8e9b-4557-bd53-41e0ea970241",
                             TwoFactorEnabled = false,
                             UserName = "stoqn@gmail.com"
                         });

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TechGate.Core.Inferfaces;
 using TechGate.Core.Services;
 using TechGate.Data;
+using TechGate.Infrastructure.Data.Models;
 
 namespace TechGate.Extensions
 {
@@ -29,7 +30,7 @@ namespace TechGate.Extensions
         public static IServiceCollection AddApplicationIdentity(this IServiceCollection services, IConfiguration config)
         {
             services
-                    .AddDefaultIdentity<IdentityUser>(options =>
+                    .AddDefaultIdentity<User>(options =>
                     {
                         options.SignIn.RequireConfirmedAccount = false;
                         options.Password.RequireDigit = false;

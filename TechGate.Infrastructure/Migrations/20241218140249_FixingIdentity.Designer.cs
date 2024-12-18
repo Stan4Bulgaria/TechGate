@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TechGate.Data;
 
@@ -11,9 +12,10 @@ using TechGate.Data;
 namespace TechGate.Infrastructure.Migrations
 {
     [DbContext(typeof(TechGateDbContext))]
-    partial class TechGateDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241218140249_FixingIdentity")]
+    partial class FixingIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,6 +74,77 @@ namespace TechGate.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -255,7 +328,7 @@ namespace TechGate.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            OrderDate = new DateTime(2024, 12, 18, 16, 20, 48, 45, DateTimeKind.Local).AddTicks(4483),
+                            OrderDate = new DateTime(2024, 12, 18, 16, 2, 48, 901, DateTimeKind.Local).AddTicks(9992),
                             OrderStatus = 0,
                             ShippingAddress = "5 Vitosha Boulevard, Sofia",
                             TotalAmount = 69.99m,
@@ -264,7 +337,7 @@ namespace TechGate.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            OrderDate = new DateTime(2024, 12, 18, 15, 50, 48, 45, DateTimeKind.Local).AddTicks(4485),
+                            OrderDate = new DateTime(2024, 12, 18, 15, 32, 48, 901, DateTimeKind.Local).AddTicks(9994),
                             OrderStatus = 5,
                             ShippingAddress = "8 Alexander Nevsky Square, Sofia",
                             TotalAmount = 329.97m,
@@ -368,7 +441,7 @@ namespace TechGate.Infrastructure.Migrations
                             Id = 1,
                             AmountPaid = 329.97m,
                             OrderId = 2,
-                            PaymentDate = new DateTime(2024, 12, 18, 16, 20, 48, 49, DateTimeKind.Local).AddTicks(2931),
+                            PaymentDate = new DateTime(2024, 12, 18, 16, 2, 48, 905, DateTimeKind.Local).AddTicks(8506),
                             PaymentMethod = 0,
                             PaymentStatus = 1,
                             UserId = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e"
@@ -378,7 +451,7 @@ namespace TechGate.Infrastructure.Migrations
                             Id = 2,
                             AmountPaid = 69.99m,
                             OrderId = 1,
-                            PaymentDate = new DateTime(2024, 12, 18, 16, 20, 48, 49, DateTimeKind.Local).AddTicks(2933),
+                            PaymentDate = new DateTime(2024, 12, 18, 16, 2, 48, 905, DateTimeKind.Local).AddTicks(8508),
                             PaymentMethod = 0,
                             PaymentStatus = 1,
                             UserId = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e"
@@ -495,7 +568,7 @@ namespace TechGate.Infrastructure.Migrations
                         {
                             Id = 1,
                             Comment = "The mouse is great but razer loves installing malware",
-                            CreatedAt = new DateTime(2024, 12, 18, 16, 20, 48, 51, DateTimeKind.Local).AddTicks(2177),
+                            CreatedAt = new DateTime(2024, 12, 18, 16, 2, 48, 907, DateTimeKind.Local).AddTicks(8422),
                             ProductId = 1,
                             Rating = 4,
                             UserId = "dea12856-c198-4129-b3f3-b893d8395082"
@@ -504,20 +577,12 @@ namespace TechGate.Infrastructure.Migrations
 
             modelBuilder.Entity("TechGate.Infrastructure.Data.Models.User", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -525,103 +590,53 @@ namespace TechGate.Infrastructure.Migrations
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
                     b.Property<string>("ProfilePictureUrl")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
+                    b.HasDiscriminator().HasValue("User");
 
                     b.HasData(
                         new
                         {
                             Id = "dea12856-c198-4129-b3f3-b893d8395082",
                             AccessFailedCount = 0,
-                            Address = "5 Vitosha Boulevard, Sofia",
-                            ConcurrencyStamp = "5151006f-6b23-433e-97a7-a93793061fb3",
-                            CreatedAt = new DateTime(2024, 12, 18, 16, 20, 48, 37, DateTimeKind.Local).AddTicks(8543),
-                            DateOfBirth = new DateTime(2001, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ConcurrencyStamp = "57783657-3690-4177-a695-a3d2909c936d",
                             Email = "peter@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "PETER@GMAIL.COM",
                             NormalizedUserName = "PETER@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDRfobC3XDJOu/HFdGbcuPEewJXFvse+/XBXrBAOVfEaVUVt04Rs1nCGdqo8QQRD4A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJl+a754AS/Gljmg8ROdUPkN8e0EBHwjFUvUyoVPEcSbDLNPTijqfVQOhSTQd1U+kA==",
                             PhoneNumberConfirmed = false,
-                            ProfilePictureUrl = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-                            SecurityStamp = "b31c8970-55ae-434a-a5be-47a3f1fa2246",
+                            SecurityStamp = "4ba20600-caeb-4940-988b-09175f7734aa",
                             TwoFactorEnabled = false,
-                            UserName = "peter@gmail.com"
+                            UserName = "peter@gmail.com",
+                            Address = "5 Vitosha Boulevard, Sofia",
+                            CreatedAt = new DateTime(2024, 12, 18, 16, 2, 48, 894, DateTimeKind.Local).AddTicks(1885),
+                            DateOfBirth = new DateTime(2001, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProfilePictureUrl = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
                         },
                         new
                         {
                             Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                             AccessFailedCount = 0,
-                            Address = "100 Tsarigradsko Shose Blvd, Sofia",
-                            ConcurrencyStamp = "3535fb1b-ad58-4d73-876d-dfd834277a27",
-                            CreatedAt = new DateTime(2024, 12, 18, 16, 20, 48, 38, DateTimeKind.Local).AddTicks(8319),
-                            DateOfBirth = new DateTime(1999, 11, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ConcurrencyStamp = "7a8522da-72a4-483f-a29a-0514c106bbbd",
                             Email = "stoqn@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "STOQN@GMAIL.COM",
                             NormalizedUserName = "STOQN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJJfTAwA7ugqojvYgwc/zTFOtTyKdXq/C6xDEw0/IaJ26oucQQ3O6kTc/zV6Oq/ELw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBbAvgln0XWcjobS4Htm7aq7SwIcgdavQNodJABn2q8/t0Tph3j43QgCb4+ROUmCtg==",
                             PhoneNumberConfirmed = false,
-                            ProfilePictureUrl = "https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg",
-                            SecurityStamp = "0cb5c0ea-923d-471a-8698-e611ece92ac8",
+                            SecurityStamp = "e1bdd498-69cc-4fc5-aa3d-cdeb5c8fb856",
                             TwoFactorEnabled = false,
-                            UserName = "stoqn@gmail.com"
+                            UserName = "stoqn@gmail.com",
+                            Address = "100 Tsarigradsko Shose Blvd, Sofia",
+                            CreatedAt = new DateTime(2024, 12, 18, 16, 2, 48, 895, DateTimeKind.Local).AddTicks(1322),
+                            DateOfBirth = new DateTime(1999, 11, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProfilePictureUrl = "https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg"
                         });
                 });
 
@@ -636,7 +651,7 @@ namespace TechGate.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("TechGate.Infrastructure.Data.Models.User", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -645,7 +660,7 @@ namespace TechGate.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("TechGate.Infrastructure.Data.Models.User", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -660,7 +675,7 @@ namespace TechGate.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TechGate.Infrastructure.Data.Models.User", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -669,7 +684,7 @@ namespace TechGate.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("TechGate.Infrastructure.Data.Models.User", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

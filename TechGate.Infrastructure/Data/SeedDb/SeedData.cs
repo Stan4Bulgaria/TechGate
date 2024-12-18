@@ -55,7 +55,7 @@ namespace TechGate.Infrastructure.Data.SeedDb
 
         private void SeedUsers()
         {
-            var hasher = new PasswordHasher<IdentityUser>();
+            var hasher = new PasswordHasher<User>();
 
             QuestOne = new User()
             {
