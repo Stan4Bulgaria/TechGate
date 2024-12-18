@@ -1,0 +1,44 @@
+﻿@using TechGate.Core.Models
+@model ProductDetailsViewModel;
+
+<div class="container my-5">
+  
+    <div class="row align-items-center">
+   
+        <div class="col-md-5 text-center">
+            <img src="@Model.ImageUrl"
+                 class="img-fluid rounded shadow"
+                 alt="Product Image"
+                 style="width: 100%; max-width: 400px; height: auto; object-fit: cover;">
+        </div>
+
+      
+        <div class="col-md-7">
+            <h2 class="mb-3">@Model.Name</h2>
+            <p class="text-muted mb-2">
+                <strong>Category:</strong> @Model.Category
+            </p>
+            <p class="text-success fw-bold mb-4">
+                <strong>Price:</strong> $@Model.Price
+            </p>
+            <p class="mb-4">
+                <strong>Description:</strong><br>
+                @Model.Description
+            </p>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12 d-flex justify-content-end gap-3">
+            <a href="/Product/Delete/@Model.Id" class="btn btn-danger px-4" type="button">
+                <i class="bi bi-trash"></i> Delete
+            </a>
+            <button class="btn btn-warning px-4 text-white" type="button">
+                <i class="bi bi-pencil-square"></i> Edit
+            </button>
+            <button class="btn btn-success px-4" type="button">
+                <i class="bi bi-cart"></i> Order
+            </button>
+        </div>
+    </div>
+</div>
