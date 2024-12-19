@@ -24,4 +24,12 @@
     <ProjectReference Include="..\TechGate.Core\TechGate.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Category\" />
+    <Folder Include="Views\Payment\" />
+    <Folder Include="Views\Review\" />
+    <Folder Include="Views\OrderItem\" />
+    <Folder Include="Views\Order\" />
+  </ItemGroup>
+
 </Project>

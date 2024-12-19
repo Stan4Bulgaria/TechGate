@@ -38,6 +38,7 @@ namespace TechGate.Extensions
                         options.Password.RequireUppercase = false;
                         options.Password.RequireNonAlphanumeric = false;
                     })
+                    .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<TechGateDbContext>();
 
             return services;

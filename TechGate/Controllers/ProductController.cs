@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TechGate.Core.Inferfaces;
 using TechGate.Core.Models;
 using TechGate.Core.Services;
@@ -30,6 +31,7 @@ namespace TechGate.Controllers
 
             return View(viewModel);
         }
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> Add()
 
@@ -42,6 +44,7 @@ namespace TechGate.Controllers
 
             return View(productFormModel);
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Add(AddProductFormViewModel model)
 
